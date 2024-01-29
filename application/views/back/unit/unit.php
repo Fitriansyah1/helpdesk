@@ -7,20 +7,58 @@
     </section>
     <section class="content">
         <div class="row mt-2">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Form Unit</h3>
+                        <a href="<?= base_url('unit') ?>" class="btn btn-warning btn-sm float-right">Kembali </a>
                     </div>
-
                     <div class="card-body">
                         <?= validation_errors() ?>
                         <form action="<?= base_url('unit/save_unit') ?>" method="POST">
                             <div class="form-group">
                                 <label>ID Unit</label>
-                                <input type="text" name="id_unit" class="form-control">
+                                <div class="input-group">
+                                    <input type="text" name="id_unit" class="form-control">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-id-card"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label>Nama Unit</label>
-                                <input type="text" name="unit" class="form-control">
+                                <div class="input-group">
+                                    <input type="text" name="unit" class="form-control">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-building"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Unit</label>
+                                <div class="input-group">
+                                    <input type="text" name="jenis_unit" class="form-control">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-info-circle"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lokasi</label>
+                                <div class="input-group">
+                                    <input type="text" name="lokasi" class="form-control">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-map-marker"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -29,9 +67,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <?php $this->load->view('back/unit/data_unit') ?>
             </div>
         </div>
     </section>

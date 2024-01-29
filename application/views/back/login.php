@@ -40,7 +40,7 @@
 <body class="hold-transition login-page">
     <div class="login-box animate__animated animate__fadeIn">
         <div class="login-logo">
-            <img src="<?= base_url() ?>assets/back/dist/img/baru_login1.png" alt="Logo" style="max-width: 200px; height: 210px;">
+            <img src="<?= base_url() ?>assets/back/dist/img/baru_login2.png" alt="Logo" style="max-width: 200px; height: 210px;">
         </div>
         <div class="card animate__animated animate__fadeIn">
             <div class="card-body login-card-body" style="text-align: center;">

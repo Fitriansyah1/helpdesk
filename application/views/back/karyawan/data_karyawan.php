@@ -21,7 +21,6 @@
                         <div class="card-header">
                             <h3 class="card-title">Data Karyawan</h3>
                             <a href="<?= base_url('karyawan/add_karyawan') ?>" class="btn btn-primary btn-sm float-right">Tambah Data</a>
-                            <a href="<?= base_url('karyawan/cetak') ?>" class="btn btn-primary btn-sm float-right">Cetak</a>
                         </div>
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
@@ -106,7 +105,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["csv", "excel", "pdf", "print"]
+                "lengthMenu": [5, 10, 25, 50, 100], // Opsi "Show entries"
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

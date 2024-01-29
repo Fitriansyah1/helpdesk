@@ -8,17 +8,22 @@ class Tiket extends CI_Controller
         $data['tiket'] = $this->M_tiket->get_tiket();
         $data['no_tiket'] = $this->M_tiket->no_tiket();
         $data['komputer'] = $this->M_komputer->get_komputer();
+        $data['cadangan'] = $this->M_cadangan->get_cadangan();
         $data['unit'] = $this->M_unit->get_unit();
         $data['user'] = $this->M_karyawan->get_karyawan();
-        $this->template->load('back/template', 'back/tiket/tiket', $data);
+        $this->template->load('back/template', 'back/tiket/data_tiket', $data);
     }
     function add_tiket()
     {
         $data['komputer'] = $this->M_komputer->get_komputer();
         $data['unit'] = $this->M_unit->get_unit();
+        $data['no_tiket'] = $this->M_tiket->no_tiket();
         $data['tiket'] = $this->M_tiket->get_tiket();
+        $data['cadangan'] = $this->M_cadangan->get_cadangan();
+        $data['user'] = $this->M_karyawan->get_karyawan();
         $this->template->load('back/template', 'back/tiket/tiket', $data);
     }
+
     function save_tiket()
     {
         $this->form_validation->set_rules('judul_tiket', 'Judul Tiket', 'trim|required');
@@ -26,7 +31,7 @@ class Tiket extends CI_Controller
 
         $this->form_validation->set_message('required', '{field} Harus di isi');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-        $this->form_validation->set_rules('cadangan', 'Perlu Cadangan', 'trim|required');
+        $this->form_validation->set_rules('nama_cadangan', 'Perlu Cadangan', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
             if ($_FILES['gambar_tiket']['error'] <> 4) {
@@ -51,20 +56,19 @@ class Tiket extends CI_Controller
                         'judul_tiket' => $this->input->post('judul_tiket'),
                         'komputer_id' => $this->input->post('komputer_id'),
                         'deskripsi_komputer' => $this->input->post('deskripsi_komputer'),
-                        'cadangan' => $this->input->post('cadangan'),
+                        'nama_cadangan' => $this->input->post('nama_cadangan'),
                         'unit_id' => $this->input->post('unit_id'),
                         'telpon' => $this->input->post('telpon'),
                         'deskripsi' => $this->input->post('deskripsi'),
                         'status_tiket' => 0,
                         'user_id' => $this->session->userdata('id_user'),
-                        'username_id' => $this->input->post('username_id'),
                         'gambar_tiket' => $this->upload->data('file_name'),
                         'tgl_daftar' => date('Y-m-d'),
                     );
 
                     $this->M_tiket->insert($data);
                     $this->session->set_flashdata('message', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">Data Berhasil Disimpan</div>');
-                    redirect('Datatiket', 'refresh');
+                    redirect('tiket', 'refresh');
                 }
             } else {
                 $data = array(
@@ -72,19 +76,18 @@ class Tiket extends CI_Controller
                     'judul_tiket' => $this->input->post('judul_tiket'),
                     'komputer_id' => $this->input->post('komputer_id'),
                     'deskripsi_komputer' => $this->input->post('deskripsi_komputer'),
-                    'cadangan' => $this->input->post('cadangan'),
+                    'nama_cadangan' => $this->input->post('nama_cadangan'),
                     'unit_id' => $this->input->post('unit_id'),
                     'telpon' => $this->input->post('telpon'),
                     'deskripsi' => $this->input->post('deskripsi'),
                     'status_tiket' => 0,
                     'user_id' => $this->session->userdata('id_user'),
-                    'username_id' => $this->input->post('username_id'),
                     'tgl_daftar' => date('Y-m-d'),
                 );
 
                 $this->M_tiket->insert($data);
                 $this->session->set_flashdata('message', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">Data Berhasil Disimpan</div>');
-                redirect('Datatiket', 'refresh');
+                redirect('tiket', 'refresh');
             }
         } else {
             $this->add_tiket();
@@ -112,7 +115,7 @@ class Tiket extends CI_Controller
             $this->session->set_flashdata('message', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">Data Tiket Berhasil diUpdate</div>');
 
             // Redirect ke halaman 'Datatiket'
-            redirect('Datatiket', 'refresh');
+            redirect('tiket', 'refresh');
         }
     }
 
@@ -124,6 +127,7 @@ class Tiket extends CI_Controller
             $this->template->load('back/template', 'back/tiket/detail_tiket', $data);
         }
     }
+
 
     function save_tanggapan()
     {
@@ -159,7 +163,10 @@ class Tiket extends CI_Controller
                     $gambar_tanggapan = $this->upload->data();
                     $data = array(
                         'tiket_id' => $this->input->post('id_tiket'),
+                        'tiket_no' => $this->input->post('tiket_no'),
                         'tanggapan' => $this->input->post('tanggapan'),
+                        'nama_teknisi' => $this->input->post('nama_teknisi'),
+                        'waktu_pengerjaan' => $this->input->post('waktu_pengerjaan'),
 
                         'gambar_tanggapan' => $this->upload->data('file_name'),
                         'waktu_tanggapan' => date('Y-m-d'),
@@ -168,7 +175,7 @@ class Tiket extends CI_Controller
 
                     $this->M_tiket->insert_tanggapan($data);
                     $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
-                    redirect('Datatiket', 'refresh');
+                    redirect('tiket', 'refresh');
                 }
             } else {
                 if ($this->input->post('id_tiket')) {
@@ -179,14 +186,17 @@ class Tiket extends CI_Controller
                 }
                 $data = array(
                     'tiket_id' => $this->input->post('id_tiket'),
+                    'tiket_no' => $this->input->post('tiket_no'),
                     'tanggapan' => $this->input->post('tanggapan'),
-                    'waktu_tanggapan' => date('d-m-Y H:i:s'),
+                    'nama_teknisi' => $this->input->post('nama_teknisi'),
+                    'waktu_pengerjaan' => $this->input->post('waktu_pengerjaan'),
+                    'waktu_tanggapan' => date('Y-m-d'),
 
                 );
 
                 $this->M_tiket->insert_tanggapan($data);
                 $this->session->set_flashdata('message', '<div class="alert alert-info">Data Berhasil Di Simpan</div>');
-                redirect('Datatiket', 'refresh');
+                redirect('tiket', 'refresh');
             }
         }
     }
@@ -208,7 +218,7 @@ class Tiket extends CI_Controller
 
                 $this->M_tiket->update($this->input->post('id_tiket'), $data);
                 $this->session->set_flashdata('message', '<div id="alert" class="alert alert-info alert-dismissible fade show" role="alert">Data Berhasil Di Tutup</div>');
-                redirect('Datatiket', 'refresh');
+                redirect('tiket', 'refresh');
             }
         }
     }
@@ -220,10 +230,10 @@ class Tiket extends CI_Controller
         if ($delete) {
             $this->M_tiket->delete($id);
             $this->session->set_flashdata('message', '<div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">Data berhasil dihapus!</div>');
-            redirect('Datatiket', 'refresh');
+            redirect('tiket', 'refresh');
         } else {
             $this->session->set_flashdata('message', '<div id="alert" class="alert alert-info alert-dismissible fade show" role="alert">Data tidak ditemukan.</div>');
-            redirect('Datatiket', 'refresh');
+            redirect('tiket', 'refresh');
         }
     }
 }

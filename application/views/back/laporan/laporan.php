@@ -10,7 +10,7 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Form Laporan</h3>
+                        <h3 class="card-title">Form Laporan Perbaikan Perperiode</h3>
                     </div>
                     <div class="card-body">
                         <form action="<?= base_url('laporan/print_laporan') ?>" method="POST" target="_blank">

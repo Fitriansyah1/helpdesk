@@ -20,7 +20,8 @@
                      <div class="col-12">
                          <div class="card">
                              <div class="card-header">
-                                 <h3 class="card-title">Data Tiket</h3>
+                                 <h3 class="card-title">Data Perbaikan</h3>
+                                 <a href="<?= base_url('tiket/add_tiket') ?>" class="btn btn-info btn-sm float-right mr-1" style="margin-right: 10px;"><i class="fas fa-plus"></i> Tambah Data</a>
                              </div>
                              <div class="card-body">
                                  <?= $this->session->flashdata('message'); ?>
@@ -95,6 +96,7 @@
                          <div class="card">
                              <div class="card-header">
                                  <h3 class="card-title">Data Tiket</h3>
+                                 <a href="<?= base_url('tiket/add_tiket') ?>" class="btn btn-info btn-sm float-right mr-1" style="margin-right: 10px;"><i class="fas fa-plus"></i> Tambah Data</a>
                              </div>
                              <div class="card-body">
                                  <?= $this->session->flashdata('message'); ?>
@@ -302,18 +304,27 @@
                          <div class="form-group">
                              <input type="hidden" name="id_tiket" id="id_tiket_id" class="form-control">
                              <input type="hidden" name="tiket_id" id="tiket_id" class="form-control">
-
-                             <div class="form-group">
-                                 <label for="">Keluhan</label>
-                                 <input type="text" id="judul_tiket" class="form-control" readonly>
-                             </div>
-                             <div class="form-group">
-                                 <label for="">Deskripsi</label>
-                                 <textarea id="deskripsi" class="form-control" readonly></textarea>
-                             </div>
                              <div class="form-group">
                                  <label for="">Yang Diperbaiki</label>
                                  <textarea name="tanggapan" class="form-control"></textarea>
+                             </div>
+                             <div class="form-group">
+                                 <label>No Tiket</label>
+                                 <select name="tiket_no" class="form-control">
+                                     <option value="">--Pilih No Tiket--</option>
+                                     <?php foreach ($tiket as $key => $row) { ?>
+                                         <option value="<?= $row->no_tiket ?>"><?= $row->no_tiket ?></option>
+                                     <?php  } ?>
+
+                                 </select>
+                             </div>
+                             <div class="form-group">
+                                 <label for="">Oleh Teknisi</label>
+                                 <input name="nama_teknisi" class="form-control"></input>
+                             </div>
+                             <div class="form-group">
+                                 <label for="">Waktu Pengerjaan/Jam</label>
+                                 <input name="waktu_pengerjaan" class="form-control"></input>
                              </div>
                              <div class="form-group">
                                  <label for="">Gambar Tanggapan</label>

@@ -46,8 +46,14 @@
                                 <textarea name="deskripsi_komputer" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Perlu Cadangan</label>
-                                <input type="text" name="cadangan" class="form-control">
+                                <label>Cadangan</label>
+                                <select name="nama_cadangan" class="form-control">
+                                    <option value="">--Pilih Cadangan--</option>
+                                    <?php foreach ($cadangan as $key => $row) { ?>
+                                        <option value="<?= $row->nama_cadangan ?>"><?= $row->nama_cadangan ?></option>
+                                    <?php  } ?>
+
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Dari Unit</label>
@@ -62,15 +68,6 @@
                             <div class="form-group">
                                 <label>No Telpon</label>
                                 <input type="text" name="telpon" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Pilih Teknisi</label>
-                                <select name="username_id" class="form-control">
-                                    <option value="">--Pilih Teknisi--</option>
-                                    <?php foreach ($user as $key => $row) { ?>
-                                        <option value="<?= $row->username ?>"><?= $row->username ?></option>
-                                    <?php  } ?>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Gambar</label><br>

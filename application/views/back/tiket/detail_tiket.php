@@ -5,8 +5,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -21,9 +19,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                                    <i class="fas fa-ticket-alt"></i> HELPDESK TICKET
-
+                                    <i class="fas fa-ticket-alt"></i> HELPDESK TICKET <a href="<?= base_url('tiket') ?>" class="btn btn-warning btn-sm float-right">Kembali </a>
                                 </h4>
+                                <br>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -37,7 +35,6 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                Teknisi : <strong><?= $tiket->username_id ?></strong><br>
                                 <b>Status Tiket</b> : <?php if ($tiket->status_tiket == '0') {
                                                             echo '<span class="badge badge-warning">Menunggu...</span>';
                                                         } else if ($tiket->status_tiket == '1') {
@@ -73,10 +70,8 @@
                                 <textarea rows="6" readonly class="form-control"><?= $tiket->deskripsi ?></textarea>
                                 <label for="">Nama Komputer</label>
                                 <input type="text" value="<?= $tiket->komputer_id ?>" readonly class="form-control">
-                                <label for="">Deskripsi Komputer</label>
-                                <textarea rows="6" readonly class="form-control"><?= $tiket->deskripsi_komputer ?></textarea>
                                 <label for="">Cadangan</label>
-                                <input type="text" value="<?= $tiket->cadangan ?>" readonly class="form-control">
+                                <input type="text" value="<?= $tiket->nama_cadangan ?>" readonly class="form-control">
                                 <label for="">Dari Unit</label>
                                 <input type="text" value="<?= $tiket->unit_id ?>" readonly class="form-control">
                                 <label for="">No Telepon</label>

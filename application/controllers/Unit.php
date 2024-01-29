@@ -6,7 +6,11 @@ class Unit extends CI_Controller
     public function index()
     {
         $data['unit'] = $this->M_unit->get_unit();
-        $this->template->load('back/template', 'back/unit/unit', $data);
+        $this->template->load('back/template', 'back/unit/data_unit', $data);
+    }
+    function add_unit()
+    {
+        $this->template->load('back/template', 'back/unit/unit');
     }
 
     public function save_unit()
@@ -18,11 +22,13 @@ class Unit extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
             $data = [
                 'id_unit' => $this->input->post('id_unit'),
-                'unit' => $this->input->post('unit')
+                'unit' => $this->input->post('unit'),
+                'jenis_unit' => $this->input->post('jenis_unit'),
+                'lokasi' => $this->input->post('lokasi'),
             ];
 
             $this->M_unit->insert($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-info"> Data Berhasil Di Simpan</div>');
+            $this->session->set_flashdata('message', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">Data Berhasil Disimpan</div>');
             redirect('unit', 'refresh');
         } else {
             $this->index();
@@ -45,11 +51,13 @@ class Unit extends CI_Controller
     {
         $data = [
             'id_unit' => $this->input->post('id_unit'),
-            'unit' => $this->input->post('unit')
+            'unit' => $this->input->post('unit'),
+            'jenis_unit' => $this->input->post('jenis_unit'),
+            'lokasi' => $this->input->post('lokasi')
         ];
 
         $this->M_unit->update($this->input->post('id_unit'), $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success">Data Berhasil Di Update</div>');
+        $this->session->set_flashdata('message', '<div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">Data Berhasil Di Update</div>');
         redirect('unit', 'refresh');
     }
 
@@ -59,7 +67,7 @@ class Unit extends CI_Controller
 
         if ($delete) {
             $this->M_unit->delete($id);
-            $this->session->set_flashdata('hapus', '<div class="alert alert-danger"> Data Berhasil Dihapus</div>');
+            $this->session->set_flashdata('hapus', '<div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">Data Berhasil Dihapus</div>');
             redirect('unit', 'refresh');
         } else {
             $this->session->set_flashdata('hapus', '<div class="alert alert-success">Data Tidak Ada</div>');

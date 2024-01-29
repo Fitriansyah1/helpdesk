@@ -8,18 +8,12 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= base_url() ?>assets/back/dist/img/oyen2.jpeg" class="img-circle elevation-2" alt="User Image">
-            </div>
+        <div class="user-panel mt-2 pb-2 mb-2 d-flex">
             <div class="info">
                 <a href="#" class="d-block"><?= $this->session->username; ?></a>
             </div>
         </div>
-
-        <!-- Sidebar Menu -->
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-1">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- ... (Bagian lain tetap sama) ... -->
                 <li class="nav-item has-treeview menu-open">
@@ -32,171 +26,111 @@
                 </li>
                 <?php if (is_it()) { ?>
                     <li class="nav-header">DATA MASTER</li>
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('karyawan') ?>" class="nav-link">
                             <i class="fas fa-users nav-icon"></i>
-                            <p>
-                                Master Karyawan
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+                            <p>Karyawan</p>
                         </a>
-                        <ul class="nav nav-treeview treeview-menu">
-
-                            <li class="nav-item">
-                                <a href="<?= base_url('karyawan') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Karyawan</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    </li>
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-ticket-alt"></i> <!-- Mengganti ikon Master Karyawan -->
-                            <p>
-                                Tiket
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('tiket') ?>" class="nav-link">
+                            <i class="fas fa-ticket-alt nav-icon"></i>
+                            <p>List Perbaikan</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url('Datatiket') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Tiket</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('tanggapan') ?>" class="nav-link">
+                            <i class="fas fa-comment nav-icon"></i>
+                            <p>Tanggapan Perbaikan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('perpindahan') ?>" class="nav-link">
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Perpindahan Perangkat</p>
+                        </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('komputer') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-desktop"></i>
-                            <p>Data Komputer</p>
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Komputer</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('cadangan') ?>" class="nav-link">
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Cadangan Komputer</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('unit') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>Data Unit</p>
+                            <i class="fas fa-book nav-icon"></i>
+                            <p>Unit</p>
                         </a>
                     </li>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('komputer') ?>" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Komputer</p>
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
-                    <li class="nav-header">LAPORAN</li>
+                    <li class="nav-header">LAPORAN PERBAIKAN</li>
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('laporan') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-file-alt"></i> <!-- Mengganti ikon Laporan -->
-                            <p>
-                                Laporan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-header">PROFILE </li>
-                    <li class="nav-item has-treeview">
-                        <a href="<?= base_url('karyawan/profile/' . $this->session->id_user); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-user-circle"></i> <!-- Mengganti ikon Profile User -->
-                            <p>
-                                Profile User
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="<?= base_url('menuutama') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Tetap menggunakan ikon Logout -->
-                            <p>
-                                Logout
-                            </p>
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <p>Laporan</p>
                         </a>
                     </li>
                 <?php } elseif (is_admin()) { ?>
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-ticket-alt"></i> <!-- Mengganti ikon Master Karyawan -->
-                            <p>
-                                Tiket
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+                    <li class="nav-header">DATA MASTER</li>
+                    <li class="nav nav-treeview">
+                    <li class="nav-item treeview-menu">
+                        <a href="<?= base_url('tiket') ?>" class="nav-link">
+                            <i class="fas fa-ticket-alt nav-icon"></i>
+                            <p>List Perbaikan</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item treeview-menu">
-                                <a href="<?= base_url('tiket') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>New Tiket</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url('Datatiket') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Tiket</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     </li>
                     <li class="nav-item has-treeview">
+                        <a href="<?= base_url('tanggapan') ?>" class="nav-link">
+                            <i class="fas fa-comment nav-icon"></i>
+                            <p>Tanggapan Perbaikan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('perpindahan') ?>" class="nav-link">
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Perpindahan Perangkat</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
                         <a href="<?= base_url('komputer') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-desktop"></i>
-                            <p>Data Komputer</p>
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Komputer</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('cadangan') ?>" class="nav-link">
+                            <i class="fas fa-desktop nav-icon"></i>
+                            <p>Cadangan Komputer</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('unit') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>Data Unit</p>
+                            <i class="fas fa-book nav-icon"></i>
+                            <p>Unit</p>
                         </a>
                     </li>
-                    <li class="nav-header">LAPORAN</li>
+                    <li class="nav-header">LAPORAN PERBAIKAN</li>
                     <li class="nav-item has-treeview">
                         <a href="<?= base_url('laporan') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-file-alt"></i> <!-- Mengganti ikon Laporan -->
-                            <p>
-                                Laporan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-header">PROFILE </li>
-                    <li class="nav-item has-treeview">
-                        <a href="<?= base_url('karyawan/profile/' . $this->session->id_user); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-user-circle"></i> <!-- Mengganti ikon Profile User -->
-                            <p>
-                                Profile User
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="<?= base_url('menuutama') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Tetap menggunakan ikon Logout -->
-                            <p>
-                                Logout
-                            </p>
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <p>Laporan</p>
                         </a>
                     </li>
                 <?php } else { ?>
+                    <li class="nav-header">DATA TIKET</li>
                     <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-ticket-alt"></i> <!-- Mengganti ikon Master Karyawan -->
-                            <p>
-                                Tiket
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+                    <li class="nav-item has-treeview">
+                        <a href="<?= base_url('tiket') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-ticket-alt"></i>
+                            <p>List Perbaikan</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url('Datatiket') ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Tiket</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
                     </li>
                     <li class="nav-header">PROFILE </li>
                     <li class="nav-item has-treeview">
@@ -208,8 +142,8 @@
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a href="<?= base_url('menuutama') ?>" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Tetap menggunakan ikon Logout -->
+                        <a href="<?= base_url('auth/login') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>
                                 Logout
                             </p>

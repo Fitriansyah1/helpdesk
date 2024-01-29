@@ -6,7 +6,21 @@ class Komputer extends CI_Controller
     public function index()
     {
         $data['komputer'] = $this->M_komputer->get_komputer();
-        $this->template->load('back/template', 'back/komputer/komputer', $data);
+        $this->template->load('back/template', 'back/komputer/data_komputer', $data);
+    }
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library('pdf');
+    }
+    function cetak_komputer()
+    {
+        $data['komputer'] = $this->M_komputer->get_komputer();
+        $this->load->view('back/komputer/komputer_print', $data);
+    }
+    function add_komputer()
+    {
+        $this->template->load('back/template', 'back/komputer/komputer');
     }
 
     public function save_komputer()
@@ -18,7 +32,11 @@ class Komputer extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
             $data = [
                 'id_komputer' => $this->input->post('id_komputer'),
-                'komputer' => $this->input->post('komputer')
+                'komputer' => $this->input->post('komputer'),
+                'jenis_komputer' => $this->input->post('jenis_komputer'),
+                'kondisi_baik' => $this->input->post('kondisi_baik'),
+                'kondisi_rusak' => $this->input->post('kondisi_rusak'),
+                'merek' => $this->input->post('merek'),
             ];
 
             $this->M_komputer->insert($data);
@@ -28,7 +46,6 @@ class Komputer extends CI_Controller
             $this->index();
         }
     }
-
 
     public function edit_komputer($id)
     {
@@ -46,7 +63,11 @@ class Komputer extends CI_Controller
     {
         $data = [
             'id_komputer' => $this->input->post('id_komputer'),
-            'komputer' => $this->input->post('komputer')
+            'komputer' => $this->input->post('komputer'),
+            'jenis_komputer' => $this->input->post('jenis_komputer'),
+            'kondisi_baik' => $this->input->post('kondisi_baik'),
+            'kondisi_rusak' => $this->input->post('kondisi_rusak'),
+            'merek' => $this->input->post('merek'),
         ];
 
         $this->M_komputer->update($this->input->post('id_komputer'), $data);
